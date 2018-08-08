@@ -1,5 +1,7 @@
 .PHONY: all
 
+all: pull release
+
 pull:
 	git pull
 
