@@ -33,7 +33,7 @@ if os.environ.get('DEV'):
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY') if not DEBUG else 'DEBUG'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '178.128.199.74']
 INTERNAL_IPS = []
 
 USE_X_FORWARDED_HOST = True
