@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block ogtags %}
+<meta property="og:title" content="Užduok klausimus savo politikams!"/>
+<meta property="og:description" content="Užeik ir gauk atsakymus į tau svarbias problemas"/>
+<meta property="og:image" content="https://klausimai.zinaukarenku.lt/static/zkrplatforma-61n.png"/>
+{% endblock %}
+
+{% block content %}
+<script src="{% static "js/jquery.typeahead.min.js" %}"></script>
+<script type="text/javascript">
+templ = new EJS({url:"{% static "ejs/politician.ejs" %}"});
+var totalPoliticianCount = "{{ total_politicians }}";
+</script>
+<link rel="stylesheet" type="text/css" href="{% static "css/jquery.typeahead.min.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/start.css" %}">
+<div id="dialog" style="display:none;">
+	<form>
+		<fieldset>
+			<label for="email">Jūsų el. paštas</label><br>
+			<input type="text" name="email" id="email" class="text ui-widget-content ui-corner-all"><br>
+			<label for="question_text">Jūsų klausimas</label><br>
+			<p id="charcount-p">0/500 ženklų</p>
+			<textarea class="text ui-widget-content ui-corner-all textarea" id="question_text" name="question_text"></textarea>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<p>
+		<p>Iš viso užduota <b>{{ total_questions }}</b> klausimų, iš jų <b>{{ answered_questions }}</b> gavę atsakymus. Iš viso parašyti <b>{{ total_answers }}</b> atsakymai, ir <b>{{ answered_politicians }}</b> politikai yra parašę bent vieną atsakymą.
+		<div id="intro">
+			<p>Visi klausimai platformoje turi būti priimti moderatoriaus, tad nebus parodyti iškart. Mūsų etikos kodeksą galite rasti <a href="http://www.zinaukarenku.lt/apie/etikos-kodeksas">čia</a>.
+		</div>
+	</div>
+</div>
+{% if logos %}
+	<div class="row">
+		<div id="partylogos">
+			{% for logo in logos %}
+			<a class="logo" id="{{ logo.name }}"><img class="logoimg" src="/static/parties/{{ logo.url }}"></a>
+			{% endfor %}
+		</div>
+	</div>
+{% endif %}
+<div class="row">
+	<div id="selector">
+		<form>
+			<div class="typeahead__container">
+			  <div class="typeahead__field">			 
+					<span class="typeahead__query">
+						<input class="js-typeahead"
+						 			 id="js-typeahead-input"	
+						       name="js-typeahead-country_v"
+						       type="search"
+						       placeholder="Politikas, partija arba vienmandatė apygarda"
+						       autocomplete="off">
+					</span>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12" style="margin-top: 10px;">
+		<div id="sel-count"><p>Pasirinktų politikų nėra </div>
+		<button id="sel-all" class="btn btn-default my-btn">Pasirinkti visus</button>
+		<button id="sel-shown" class="btn btn-default my-btn">Pasirinkti rodomus</button>
+		<button id="sel-clear" class="btn btn-default my-btn">Išvalyti pasirinkimą</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12" id="followup"></div>
+</div>
+<div class="row">
+	<div class="col-md-3 list-div" id="listdiv0"></div>
+	<div class="col-md-3 list-div" id="listdiv1"></div>
+	<div class="col-md-3 list-div" id="listdiv2"></div>
+	<div class="col-md-3 list-div" id="listdiv3"></div>
+</div>
+<div id="popupdiv">
+	<a class="btn btn-default btn-lg my-btn" href="#" id="popup">Paklausti</a>
+</div>
+<script src="{% static "js/typeahead.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,117 @@
+.my-container {
+	margin: 0 auto;
+	width: 80%;
+}
+
+body {
+	background-color: #f6f5f1;
+	color: #6b6c6f;
+	font-family: 'Source Sans Pro',sans-serif;
+	font-size: 20px;
+	font-weight: lighter;
+}
+
+h4, h3, h2{
+	color: #6b6c6f;
+	font-weight: 900;
+}
+
+h3 {
+	font-weight: 500;
+}
+
+b {
+	color: inherit;
+	font-weight: 900;
+}
+
+.navbar-brand {
+	padding-top: 3px;
+}
+
+.my-btn {
+	-webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+	background-color: #3aa8af;
+	color: #ffffff;
+}
+
+.ui-dialog {
+	font-family: 'Source Sans Pro',sans-serif;
+	font-weight: lighter;
+}
+
+.ui-dialog-titlebar {
+	display: none;
+}
+
+.text {
+	background-color: #ffffff!important;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-brand {
+  color: rgba(255, 255, 255, 0.91);
+}
+#custom-bootstrap-menu.navbar-default {
+  font-size: 14px;
+  background-color: rgba(58, 168, 175, 1);
+  border-width: 1px;
+  border-radius: 4px;
+}
+#custom-bootstrap-menu.navbar-default .navbar-nav>li>a {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(248, 248, 248, 0);
+}
+#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:hover,
+#custom-bootstrap-menu.navbar-default .navbar-nav>li>a:focus {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(54, 137, 143, 1);
+}
+#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a,
+#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:hover,
+#custom-bootstrap-menu.navbar-default .navbar-nav>.active>a:focus {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(58, 168, 175, 1);
+}
+#custom-bootstrap-menu.navbar-default .navbar-toggle {
+  border-color: #3aa8af;
+}
+#custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+#custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+  background-color: #3aa8af;
+}
+#custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+  background-color: #3aa8af;
+}
+#custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+#custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+  background-color: #3aa8af;
+}
+#logged-user-p {
+	color: #ffffff;
+}
+
+.navbar-toggle-c {
+	border:1px solid #ffffff!important;
+}
+
+.icon-bar-c {
+	border:1px solid #ffffff;
+}
+
+@media only screen and (max-width : 768px) {
+	.my-container {
+		width: 100%;
+	}
+	p {
+		font-size: 16px;
+	}
+	body {
+		background-color: #f6f5f1;
+		color: #6b6c6f;
+		font-family: 'Source Sans Pro',sans-serif;
+		font-size: 18px;
+		font-weight: lighter;
+	}
+}

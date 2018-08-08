@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static "css/answers.css" %}">
+<div id="bio-dialog">
+	<form>
+		<fieldset>
+			<label for="new-bio">Nauja biografija</label><br>
+			<textarea class="text ui-widget-content ui-corner-all textarea" id="new-bio"></textarea>
+</div>
+<div id="answer-dialog">
+	<form>
+		<fieldset>
+			<label for="new-answer">Atsakymas</label><br>
+			<textarea class="text ui-widget-content ui-corner-all textarea" id="new-answer"></textarea>
+</div>
+<div class="row">
+	<a class="btn btn-default my-btn" id="biobtn">Pakeisti biografiją</a>
+	<a class="btn btn-default my-btn" href="/politician/{{ pol_id }}/">Jūsų puslapis</a>
+	{% if notif_status %}
+		<a class="btn btn-default my-btn" href="/unsubscribe/">Išjungti pranešimus</a>
+	{% else %}
+		<a class="btn btn-default my-btn" href="/resubscribe/">Įjungti pranešimus</a>
+	{% endif %}
+</div>
+<div class="row">
+	{% if biography %}
+	<script type="text/javascript">
+		var polit = "{{ pol_id }}";
+	</script>
+	<script type="text/javascript">
+		var biography_old = "{{ biography }}";
+	</script>
+	<p>Apie jus:
+	<p>{{ biography|linebreaks|urlize }}
+	{% else %}
+	<p>Jūsų biografija nenustatyta! Jūsų biografija yra rodoma jūsų puslapyje. Norėdami ją nustatyti, paspauskite viršuje esantį mygtuką „Pakeisti biografiją“. Čia taip pat galite įdėti nuorodą į savo programą.
+	{% endif %}
+</div>
+<div class="row" style="margin-left:5%;">
+	<h3>Jums užduoti klausimai:</h3>
+	<p>Atsakę į klausimą, drąsiai galite nuoroda į klausimą pasidalinti Facebook ar kur kitur.
+</div>
+{% if questions %}
+	{% for question in questions %}
+	<div class="row" style="margin-left:10%;">
+		<h4>{{ question.question_text }}</h4>
+		<a class="btn btn-default my-btn atsakbtn" id="{{ question.id }}">Atsakyti</a>
+	</div>
+	{% endfor %}
+{% else %}
+<div class="row" style="margin-left:5%;">
+	<p>Jums užduotų neatsakytų klausimų nėra!
+</div>
+{% endif %}
+<script src="{% static "js/answers.js" %}"></script>
+{% endblock %}

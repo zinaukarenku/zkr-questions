@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static "css/latest.css" %}">
+<div class="row">
+	<h4>{{ promise.politician.full_name }}:</h4>
+	<h2>„{{ promise.text }}“</h2>
+	<p>Šaltinis: {{ promise.source|urlize }}
+	<p><a class="btn btn-default my-btn" href="/politician/{{ promise.politician.id }}/">Politiko profilis</a>
+</div>
+<div class="row">
+{% for upd in updates %}
+	<div class="klausimas">
+		<div class="klausimas-sub klausimas-sub-ch">
+			<h4>{{ upd.time_added }}</h4>
+			<p>{{ upd.text|linebreaks|urlize }}
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endblock %}

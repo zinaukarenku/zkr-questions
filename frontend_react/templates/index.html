@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="lt" class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <title>Žinau, ką renku</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Žinau, ką renku – tai Lietuvos jaunimo iniciatyva, skatinanti jaunų žmonių politinį sąmoningumą ir pilietinį dalyvavimą.">
+    <meta property="og:url" contnet="https://www.zinaukarenku.lt">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Žinau, ką renku">
+    <meta property="og:description" content="Žinau, ką renku – tai Lietuvos jaunimo iniciatyva, skatinanti jaunų žmonių politinį sąmoningumą ir pilietinį dalyvavimą.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@zinaukarenku">
+    <meta name="twitter:title" content="Žinau, ką renku">
+    <meta name="twitter:description" content="Žinau, ką renku – tai Lietuvos jaunimo iniciatyva, skatinanti jaunų žmonių politinį sąmoningumą ir pilietinį dalyvavimą.">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <script src="https://use.fontawesome.com/36db74e6ca.js"></script>
+    <link rel="preload" as="script" href="/static/app.480457b20e14e41c3284.bundle.js">
+    <link rel="preload" as="script" href="/static/vendor.d6ed272898a36aca09d8.js">
+    <style>
+        body,
+        html {
+            font-family: Roboto, Helvetica, Arial, sans-serif
+        }
+        
+        body {
+            background-color: #deeef5;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -webkit-font-smoothing--moz-osx-font-smoothing: grayscale
+        }
+        
+        body::-webkit-scrollbar {
+            display: none
+        }
+        
+        .app-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            -webkit-transition: -webkit-transform .5s ease-in-out;
+            transition: -webkit-transform .5s ease-in-out;
+            transition: transform .5s ease-in-out;
+            transition: transform .5s ease-in-out, -webkit-transform .5s ease-in-out
+        }
+        
+        .nav-up {
+            -webkit-transform: translateY(-50px);
+            transform: translateY(-50px)
+        }
+        
+        .content-wrapper {
+            overflow: auto;
+            height: 100%
+        }
+        
+        .content-wrapper::-webkit-scrollbar {
+            display: none
+        }
+        
+        .container {
+            padding: 0
+        }
+        
+        .row {
+            margin: 0
+        }
+        
+        .zkr-flex-direction {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: reverse;
+            -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse
+        }
+        
+        .col-12,
+        .col-lg-8 {
+            padding-left: 0;
+            padding-right: 0
+        }
+        
+        .mb-50 {
+            margin-bottom: 50px
+        }
+        
+        .main-padding {
+            padding-top: 90px
+        }
+        
+        .main-padding--single,
+        .no-padding {
+            padding-top: 0
+        }
+        
+        .text-600 {
+            font-weight: 600
+        }
+        
+        .text-size-80 {
+            font-size: 80%
+        }
+        
+        .text-size-sm-60-md-80 {
+            font-size: 60%
+        }
+        
+        a:active,
+        a:hover {
+            text-decoration: none
+        }
+        
+        .app-wrapper-nav {
+            -webkit-box-shadow: 0 0 1px 1px #c4ced2;
+            box-shadow: 0 0 1px 1px #c4ced2;
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1000
+        }
+        
+        .navbar-brand {
+            padding-left: 5px;
+            padding-bottom: 4px
+        }
+        
+        .navbar-brand img {
+            height: 40px
+        }
+        
+        .nav-filter {
+            background-color: hsla(0, 0%, 100%, .82)
+        }
+        
+        .nav-filter .container {
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar
+        }
+        
+        .nav-filter .container::-webkit-scrollbar {
+            display: none
+        }
+        
+        .btn-filter {
+            display: inline-block;
+            color: #014c8c;
+            background-color: #d3ecf7;
+            border-color: #d3ecf7;
+            text-transform: uppercase;
+            min-width: 80px;
+            font-size: .8rem
+        }
+        
+        .btn-filter.active {
+            background-color: #056dff;
+            color: #fff
+        }
+        
+        .nav-main {
+            background-color: #fff;
+            -webkit-transition: -webkit-transform .5s ease-in-out;
+            transition: -webkit-transform .5s ease-in-out;
+            transition: transform .5s ease-in-out;
+            transition: transform .5s ease-in-out, -webkit-transform .5s ease-in-out
+        }
+        
+        .nav-main .container {
+            border-bottom: 1px solid #deeef5
+        }
+        
+        .logo {
+            margin-left: 10px;
+            margin-top: 5px
+        }
+        
+        .btn-prime {
+            height: 31px;
+            width: 31px;
+            background-color: transparent;
+            border-style: none;
+            border-radius: 4px;
+            display: inline-block;
+            margin-right: 5px;
+            -webkit-appearance: none
+        }
+        
+        .btn-prime i.fa {
+            color: #b0bcc1
+        }
+        
+        .btn-prime.active,
+        .btn-prime:hover {
+            background-color: #d3ecf7
+        }
+        
+        .btn-prime.active>.dot,
+        .btn-prime:hover>.dot {
+            background-color: #014c8c
+        }
+        
+        .btn-prime.active>i.fa,
+        .btn-prime:hover>i.fa {
+            color: #014c8c
+        }
+        
+        .btn-prime .dot {
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            background-color: #b0bcc1;
+            margin: 3px 7px
+        }
+        
+        .btn-search {
+            background-color: transparent
+        }
+        
+        .btn-search.active {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            margin-right: 0
+        }
+        
+        .user-image {
+            background-color: #3c768f
+        }
+        
+        .nav-support {
+            background-color: #fff;
+            height: 45px
+        }
+        
+        .nav-support a {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            padding-top: 15px;
+            color: #b0bcc1
+        }
+        
+        .nav-support a:hover {
+            color: #add8e6
+        }
+        
+        .nav-support a.active {
+            color: #056dff
+        }
+        
+        .nav-support a span {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 500
+        }
+        
+        .nav-support i span {
+            display: block;
+            padding-top: 5px
+        }
+        
+        .btn-success {
+            background-color: #bf972c;
+            border-color: #bf972c
+        }
+        
+        .btn-success:hover {
+            background-color: #a77d0e;
+            border-color: #a77d0e
+        }
+        
+        .btn-outline-light {
+            width: 200px
+        }
+        
+        .btn-outline-light:hover {
+            color: #056dff
+        }
+        
+        .card {
+            border-style: none;
+            border-radius: 0;
+            margin-bottom: 15px
+        }
+        
+        .card-slides {
+            overflow: hidden;
+            position: relative
+        }
+        
+        .card-slides ol {
+            position: absolute;
+            bottom: 0
+        }
+        
+        .card-slides ol,
+        .card-slides ol li {
+            margin: 0;
+            padding: 0
+        }
+        
+        .card-slides ol li .dot {
+            border: 1px solid #00f;
+            border-radius: 50%;
+            height: 5px;
+            width: 5px
+        }
+        
+        .card-slides ol li .dot.active {
+            background-color: #00f
+        }
+        
+        .card-media-img {
+            height: 50px;
+            width: 50px;
+            background-color: #3c768f;
+            background-size: cover;
+            background-position: 50% 25%;
+            border-radius: 5px
+        }
+        
+        .card-media-img--large {
+            height: 120px;
+            width: 120px;
+            margin: 0 auto;
+            margin-top: -71px;
+            margin-bottom: 25px
+        }
+        
+        .card-media-img--48 {
+            height: 48px!important;
+            width: 48px!important
+        }
+        
+        .card-icon i {
+            color: #056dff
+        }
+        
+        .media-body .text-eyebrow {
+            font-size: .8rem
+        }
+        
+        .media-body .text-eye {
+            font-size: 1rem;
+            font-weight: 400
+        }
+        
+        .card-link {
+            line-height: 1;
+            font-size: .9rem;
+            font-weight: 600
+        }
+        
+        .vote-container {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 0;
+            flex: 1 0
+        }
+        
+        .vote-green {
+            color: green
+        }
+        
+        .vote-red {
+            color: red
+        }
+        
+        .vote-grey {
+            color: grey
+        }
+        
+        .zkr-accordion {
+            border-bottom: 1px solid #dfdfdf;
+            padding-left: 1.25em;
+            padding-right: 1.25em
+        }
+        
+        .zkr-accordion:last-child {
+            border-bottom: 0
+        }
+        
+        .card-body ul {
+            margin: 0;
+            padding: 0
+        }
+        
+        .card-body ul li {
+            list-style: none
+        }
+        
+        .card-blog {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            height: 150px;
+            min-width: 300px;
+            width: 100%
+        }
+        
+        .card-blog a:hover {
+            text-decoration: none
+        }
+        
+        .card-blog .card-body {
+            background-color: rgba(191, 151, 44, .75);
+            color: #fff;
+            height: 150px
+        }
+        
+        .card-header {
+            height: 150px;
+            background-color: #3c768f;
+            background-position: 50%;
+            background-size: cover;
+            border: none;
+            border-radius: 0!important
+        }
+        
+        .card-header--about {
+            background-image: url(/static/assets/images/zkr-jaunimas.jpg);
+            height: 300px
+        }
+        
+        .card-header--forma {
+            background-image: url(/static/assets/images/zkr-jaunimas3.jpg)
+        }
+        
+        ul.more-info {
+            padding: 0
+        }
+        
+        ul.more-info li {
+            list-style: none;
+            font-size: 16px;
+            margin-bottom: 1px;
+            color: #0275d8
+        }
+        
+        ul.more-info li a,
+        ul.more-info li label {
+            padding: 5px
+        }
+        
+        ul.more-info li i {
+            visibility: hidden
+        }
+        
+        ul.more-info li a.active,
+        ul.more-info li:hover {
+            background: #d3ecf7;
+            border-radius: 5px;
+            color: #014c8c
+        }
+        
+        ul.more-info li a.active a,
+        ul.more-info li:hover a {
+            color: #014c8c
+        }
+        
+        ul.more-info li a.active i,
+        ul.more-info li:hover i {
+            visibility: visible
+        }
+        
+        .social-network a {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            text-align: center
+        }
+        
+        .sidebar {
+            position: relative;
+            margin-top: 40px;
+            max-width: calc(100vh - 48px)
+        }
+        
+        .sidebar--static {
+            top: 90px
+        }
+        
+        .sidebar-header {
+            background-color: #3c768f;
+            background-repeat: norepeat;
+            background-size: cover;
+            background-position: 50%;
+            height: 300px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px
+        }
+        
+        .sidebar-header--static {
+            background-image: url(/static/assets/images/zkr-savanoriai.jpg)
+        }
+        
+        .sidebar-header--seimas {
+            background-image: url(/static/assets/images/seimas.jpg)
+        }
+        
+        .sidebar-header--gov {
+            background-image: url(/static/assets/images/gov.jpg)
+        }
+        
+        footer a {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 80%
+        }
+        
+        footer span {
+            font-size: .8rem
+        }
+        
+        footer ul {
+            padding-left: 5px
+        }
+        
+        footer ul li {
+            display: inline-block!important;
+            list-style: none;
+            margin: 0 5px
+        }
+        
+        footer ul:first {
+            margin-left: 0
+        }
+        
+        .static-tab {
+            position: absolute;
+            opacity: 0;
+            left: -100px
+        }
+        
+        .card-tab {
+            display: none
+        }
+        
+        input#apie:checked~main div[data-tab=apie] {
+            display: block
+        }
+        
+        input#apie:checked~aside .card .card-body ul.more-info li label[for=apie] {
+            background: #d3ecf7;
+            border-radius: 5px;
+            color: #014c8c
+        }
+        
+        input#apie:checked~aside .card .card-body ul.more-info li label[for=apie] i {
+            visibility: visible
+        }
+        
+        input#etika:checked~main div[data-tab=etika] {
+            display: block
+        }
+        
+        input#etika:checked~aside .card .card-body ul.more-info li label[for=etika] {
+            background: #d3ecf7;
+            border-radius: 5px;
+            color: #014c8c
+        }
+        
+        input#etika:checked~aside .card .card-body ul.more-info li label[for=etika] i {
+            visibility: visible
+        }
+        
+        input#help:checked~main div[data-tab=help] {
+            display: block
+        }
+        
+        input#help:checked~aside .card .card-body ul.more-info li label[for=help] {
+            background: #d3ecf7;
+            border-radius: 5px;
+            color: #014c8c
+        }
+        
+        input#help:checked~aside .card .card-body ul.more-info li label[for=help] i {
+            visibility: visible
+        }
+        
+        .form-control {
+            padding: .25rem .5rem
+        }
+        
+        .card-404 {
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            margin: 0
+        }
+        
+        .card-404 h2 {
+            color: rgba(5, 109, 255, .41);
+            font-size: 13rem;
+            position: absolute;
+            left: -47px;
+            bottom: -78px
+        }
+        
+        .card-404 p {
+            color: #b0bcc1;
+            font-size: 2rem;
+            position: relative;
+            z-index: 3
+        }
+        
+        .banner {
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50%
+        }
+        
+        .banner .container {
+            color: #fff;
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 100
+        }
+        
+        .banner--home {
+            height: 200px
+        }
+        
+        .banner--volunteer {
+            background-image: url(/static/assets/images/zkr-savanoriai2.jpg);
+            height: 250px
+        }
+        
+        .banner--volunteer .container {
+            margin-top: 30px
+        }
+        
+        .banner-cover {
+            background-color: rgba(5, 109, 255, .78);
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 50
+        }
+        
+        .draugai {
+            background-color: #fff;
+            padding: 30px 0
+        }
+        
+        .draugai ul {
+            margin: 0;
+            padding: 0
+        }
+        
+        .draugai ul li {
+            list-style: none;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            text-align: center;
+            margin-bottom: 20px;
+            min-width: 50%
+        }
+        
+        .card-cover {
+            height: 170px;
+            background: #a094ce
+        }
+        
+        .row {
+            width: 100%
+        }
+        
+        .card-title {
+            font-size: 1.25rem
+        }
+        
+        .card-text-grey {
+            color: #b0bcc1
+        }
+        
+        .pl-125 {
+            padding-left: 1.25em
+        }
+        
+        @media screen and (min-width:360px) {
+            .search-field {
+                max-width: 237px
+            }
+            .search-field.active {
+                width: 70vw
+            }
+        }
+        
+        @media screen and (min-width:375px) {
+            .search-field {
+                max-width: 252px
+            }
+        }
+        
+        @media screen and (min-width:412px) {
+            .search-field {
+                max-width: 290px
+            }
+        }
+        
+        @media screen and (min-width:576px) {
+            .text-size-sm-60-md-80 {
+                font-size: 80%
+            }
+            .nav-support {
+                height: 60px
+            }
+            .main-padding {
+                padding-top: 90px
+            }
+            .main-padding--single {
+                padding-top: 30px;
+                margin: 0 auto
+            }
+            .card {
+                border-radius: 5px
+            }
+            .card-media-img {
+                height: 64px;
+                width: 64px
+            }
+            .card-media-img--large {
+                height: 120px;
+                width: 120px
+            }
+            .card-cover {
+                height: 200px;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px
+            }
+            .media-body .text-eyebrow {
+                font-size: 1rem
+            }
+            .media-body .text-eye {
+                font-size: 1.25rem
+            }
+            .search-field {
+                max-width: 200px
+            }
+            .sidebar {
+                margin-top: 120px
+            }
+        }
+        
+        @media screen and (min-width:600px) {
+            .navbar-brand.active {
+                margin-left: 0
+            }
+            .modal-content {
+                border-radius: 4px;
+                height: 600px;
+                width: 400px
+            }
+            .col-12 {
+                padding: 0 15px
+            }
+            .banner--home .container {
+                margin-top: 0
+            }
+            .banner--volunteer {
+                height: 200px
+            }
+            .card-blog .card-body {
+                border-radius: 3px
+            }
+            .card-header {
+                border-top-left-radius: 3px!important;
+                border-top-right-radius: 3px!important
+            }
+            .card-404 {
+                max-height: 250px;
+                max-width: 500px
+            }
+            .card-404 h2 {
+                left: -39px
+            }
+            .card-sidebar ul {
+                -webkit-column-count: 2;
+                column-count: 2
+            }
+            footer ul {
+                padding-left: 0
+            }
+        }
+        
+        @media screen and (min-width:1000px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+                max-width: 1000px
+            }
+            .nabar-brand {
+                padding-left: 0
+            }
+            .usermenu-arrow {
+                right: 19px
+            }
+            .banner--home .container {
+                margin-top: 0;
+                height: 100%
+            }
+            .home .card {
+                width: 480px
+            }
+            .card-blog {
+                max-width: 315px
+            }
+            .main-padding--single {
+                padding-top: 30px
+            }
+            .zkr-flex-direction {
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: row;
+                flex-direction: row;
+                padding-top: 120px
+            }
+            .sidebar {
+                margin-top: 0;
+                position: -webkit-sticky;
+                position: sticky;
+                top: 120px
+            }
+            .sidebar-header {
+                height: 150px
+            }
+            .card-sidebar {
+                max-height: 700px;
+                overflow-x: auto
+            }
+            .card-sidebar ul {
+                -webkit-column-count: 1;
+                column-count: 1
+            }
+            .card-sidebar::-webkit-scrollbar {
+                display: none
+            }
+        }
+    </style>
+</head>
+
+<body><noscript><div class="no-js-note align-items-center justify-content-center"><div class="card"><div class="card-block"><h1 style="font-size: 1.15rem"><strong>Reikalingas JavaScript palaikymas</strong></h1><hr class="mt-0 mb-3"><p>Mes apgailestaujame, bet Žinau, ką renku platforma be JavaScripto negali tinkamai veikti.</p><a href="http://www.enable-javascript.com/" target="_blank" rel="noopener" rel="noreferrer">Kaip įsijungti JavaScript?</a></div></div></div></noscript>
+    <div
+        id="app"></div>
+        <script type="text/javascript" src="/static/vendor.d6ed272898a36aca09d8.js" defer="defer"></script>
+        <script type="text/javascript" src="/static/app.480457b20e14e41c3284.bundle.js" defer="defer"></script>
+        <script type="text/javascript" src="/static/styles.afc7e6ae9195cce8e878.bundle.js" defer="defer"></script>
+</body>
+
+</html>

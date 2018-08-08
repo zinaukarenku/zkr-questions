@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Žinau, ką renku</title>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#pass2').keyup(function() {
+				var pw1 = $("#newpw").val();
+				var pw2 = $("#pass2").val();
+				if (pw1 == pw2) {
+					$("#subbtn").disabled = false;
+					$("#validate-status").html("Slaptažodžiai vienodi");
+				} 
+				else {
+					$("#subbtn").disabled = true;
+					$("#validate-status").html("Slaptažodžiai skirtingi!");
+				}
+			});
+		});
+	</script>
+	<p>Slaptažodžio nustatymas „Žinau, ką renku“ platformoje</p>
+	<form action="/registration/reg_act/" method="post">
+		{% csrf_token %}
+		<input type="hidden" name="key" value="{{ key }}">
+		Slaptažodis:<br>
+		<input type="password" id="newpw" name="newpw"><br>
+		Pakartoti:<br>
+		<input name="pass2" type="password" id="pass2"><br>
+		<input id="subbtn" type="submit" value="Submit">
+	</form>
+	<p id="validate-status"></p>
+</body>
+</html>

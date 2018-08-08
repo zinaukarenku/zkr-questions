@@ -1,0 +1,60 @@
+#partylogos {
+	display: block;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.logoimg {
+	max-width: 80px;
+	height: auto;
+}
+
+@media only screen and (max-width : 768px) {
+	.logoimg {
+		max-width: 60px;
+		height: auto;
+	}
+}
+
+.politician-div {
+	cursor: pointer;
+	overflow: auto;
+	color: #aaa;
+	font-size: 14px;
+	border-bottom-width: 20px;
+	border-bottom-style: solid;
+	border-color: #f6f5f1;
+	background-color: #fff;
+	padding: 10px 10px 10px 10px;
+}
+
+.politician-div.selected {
+	color: inherit;
+}
+
+.politician-div > .btn {
+	background-color: #f6f5f1;
+	color: inherit;
+}
+
+.politician-div.selected > .btn {
+	background-color: #3aa8af;
+	color: #ffffff;
+}
+
+#js-typeahead-input {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #3aa8af;
+}
+
+.textarea {
+	width: 450px;
+	height: 200px;
+}
+
+#popupdiv {
+	display: none;
+	margin-top: 20px;
+	text-align: center;
+}

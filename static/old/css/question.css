@@ -1,0 +1,27 @@
+.textarea {
+	width: 450px;
+	height: 200px;
+}
+
+.answer {
+	display: block;
+	background-color: #ffffff;
+}
+
+b {
+	font-size: 20px;
+	font-weight: bold;
+	color: #6b6c6f;
+}
+
+.pol-info {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 16px;
+	color: #6b6c6f;
+}
+
+.answer-text {
+	margin-left: 10%;
+	margin-right: 10%;
+}

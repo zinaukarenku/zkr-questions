@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static "css/approval.css" %}">
+<script src="{% static "js/approval.js" %}"></script>
+<div id="prom-dialog">
+	<form>
+		<fieldset>
+			<label for="promise-text">Pažadas</label><br>
+			<textarea class="text ui-widget-content ui-corner-all textarea" id="promise-text"></textarea><br>
+			<label for="source-text">Šaltinis</label><br>
+			<input type="text" id="source-text" class="text ui-widget-content ui-corner-all"><br>
+</div>
+<div id="upd-dialog">
+	<form>
+		<fieldset>
+			<label for="update-text">Atnaujinimas</label><br>
+			<textarea class="text ui-widget-content ui-corner-all textarea" id="update-text"></textarea>
+</div>
+{% if moderated %}
+<h4>Moderuojami politikai:</h4>
+{% for pol in moderated %}
+<h2>{{ pol.full_name }}</h2>
+<button class="btn btn-primary new-promise" data-politician="{{ pol.id }}">Naujas pažadas</button>
+<ul>
+	{% for prom in pol.promise_set.all %}
+		<li>{{ prom.text }} <button class="btn btn-primary new-update" data-promise="{{ prom.id }}">Atnaujinti</button></li>
+	{% endfor %}
+</ul>
+{% endfor %}
+{% endif %}
+{% if questions %}
+<div class="row">
+	<h4>Nepriimti klausimai</h4>
+</div>
+{% for question in questions %}
+<div class="row" id="par{{ question.id }}">
+	<h2>{{ question.question_text }}</h2>
+	<a class="btn btn-success priimti" data-question="{{ question.id }}">Priimti</a>
+	<a class="btn btn-danger atmesti" data-question="{{ question.id }}">Atmesti</a>
+	{{ question.politicians.count }}
+</div>
+{% endfor %}
+{% else %}
+<h4>Nepriimtų klausimų nėra</h4>
+{% endif %}
+{% endblock %}

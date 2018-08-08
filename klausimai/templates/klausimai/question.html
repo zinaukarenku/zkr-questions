@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block ogtags %}
+<meta property="og:title" content="Klausimas „Žinau, ką renku“ platformoje"/>
+<meta property="og:description" content="{{ question.question_text }}"/>
+<meta property="og:image" content="https://klausimai.zinaukarenku.lt/static/zkrplatforma-59n.png"/>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static "css/question.css" %}">
+{% if expert %}
+<script src="{% static "js/question.js" %}"></script>
+<div id="dialog">
+  <form>
+    <fieldset>
+      <label for="comment_text">Jūsų komentaras</label><br>
+      <textarea id="comment_text" class="text ui-widget-content ui-corner-all textarea" name="comment_text"></textarea>
+</div>
+{% endif %}
+<div class="row">
+	<div style="margin-left:5%;">
+		<h2>{{ question.question_text }}</h2>
+		<h3>Atsakymai:</h3>
+	</div>	
+</div>
+<div class="row">
+{% if question.answer_set.all %}
+	{% for answer in question.answer_set.all %}
+		<div class="answer" id="{{ answer.politician.id }}">
+			<br>
+			<div class="pol-info">
+				<b>{{ answer.politician.full_name }}</b><br>
+				{{ answer.politician.party.name }}<br>{{ answer.politician.area.proper_name }}<br>
+				<a class="btn btn-default my-btn" href="/politician/{{ answer.politician.id }}/">Politiko profilis</a>
+			</div>
+			<br>
+			<div class="answer-text">
+				{{ answer.answer_text|linebreaks|urlize }}
+			</div>
+			<div>
+				{% if expert %}
+				<p><a class="btn btn-default my-btn expert-btn" href="#" id="{{ answer.id }}">Komentuoti</a>
+				{% endif %}
+			</div>
+			{% if answer.comment_set.all %}
+				<div style="margin-left:10%;"><h3>Ekspertų komentarai:</h3></div>
+				{% for comment in answer.comment_set.all %}
+					<div style="margin-left:15%;">
+						<b>{{ comment.expert.full_name }}:</b>
+						{{ comment.comment_text|linebreaks }}
+					</div>
+				{% endfor %}
+			{% endif %}
+			<div style="display:block;height:20px;"></div>
+			<br>
+		</div>
+		<br>
+	{% endfor %}
+{% endif %}
+</div>
+{% endblock %}

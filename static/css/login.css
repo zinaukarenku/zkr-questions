@@ -1,0 +1,22 @@
+#loginpanel {
+		display: block;	
+		width: 50%;
+		margin: 0 auto;
+}
+
+.panel-heading {
+	background-color: #3aa8af!important;
+	color: #fff!important;
+}
+
+.panel-body {
+	background-color: #f6f5f1;
+}
+
+@media only screen and (max-width : 768px) {
+	#loginpanel {
+			display: block;	
+			width: 95%;
+			margin: 0 auto;
+	}
+}

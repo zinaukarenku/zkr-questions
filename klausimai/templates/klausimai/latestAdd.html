@@ -1,0 +1,24 @@
+{% for quest in questions %}
+	<div class="klausimas">
+		<div class="klausimas-sub klausimas-sub-ch">
+			<h4>{{ quest.question_text }}</h4>
+			<p>Klausimas skirtas:
+			{% for pol in quest.politicians.all|slice:":10" %}{% if forloop.counter != 1 %}, {% endif %}{{ pol.full_name }}{% endfor %}{% if quest.politicians.all|length > 10 %}, ir kiti.{% endif %}
+			{% if not load_extra == "unanswered/" %}
+				{% if quest.answer_set.all.count %}
+				<p>Atsakymai: {{ quest.answer_set.all.count }}
+				{% else %}
+				<p>Atsakymų nėra
+				{% endif %}
+			{% endif %}
+			{% if quest.answer_set.all %}
+			<p><a class="btn btn-default my-btn" href="/question/{{ quest.id }}/{% if pol_id %}#{{ pol_id }}{% endif %}">Atsakymai</a>
+			{% endif %}
+		</div>
+	</div>
+{% endfor %}
+<script type="text/javascript">
+if (parseInt({{ questions.count }}) < 10) {
+	$("#daugiau-btn-div").empty();
+}
+</script>

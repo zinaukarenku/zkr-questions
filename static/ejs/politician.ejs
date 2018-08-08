@@ -1,0 +1,11 @@
+<div class="politician-div" data-id=<%= id %>>
+	<b><%= name %></b><br>
+	<i><%= party %><br>
+	   <%= area %></i><br>
+  <% if (registered == false) { %>
+		<i>Neprisijungęs</i><br>
+	<% } else { %>
+		<i>Prisijungęs</i><br>
+	<% } %>
+	<a class="btn btn-default my-btn" href="/politician/<%= id %>/">Politiko profilis</a>
+</div>

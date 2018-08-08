@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+
+  zkr:
+    build: .
+    volumes:
+      - static_volume:/srv/questions/static
+      - media_volume:/srv/questions/media
+    env_file:
+      - .env
+    networks:
+      - nginx_network
+      - database1_network
+    depends_on:
+      - database1
+
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - static_volume:/srv/questions/static
+      - media_volume:/srv/questions/media
+    depends_on:
+      - zkr
+    networks:
+      - nginx_network
+
+  database1:
+    image: postgres
+    env_file:
+      - .env
+    networks:
+      - database1_network
+    volumes:
+      - database1_volume:/var/lib/postgresql/data
+
+networks:
+  nginx_network:
+    driver: bridge
+  database1_network:
+    driver: bridge
+
+volumes:
+  database1_volume:
+  static_volume:
+  media_volume:

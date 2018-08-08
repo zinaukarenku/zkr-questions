@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block ogtags %}
+{% if pol_name %}
+<meta property="og:title" content="Politikas: {{ pol_name }}"/>
+<meta property="og:image" content="https://klausimai.zinaukarenku.lt/static/zkrplatforma-58n.png"/>
+{% else %}
+<meta property="og:image" content="https://klausimai.zinaukarenku.lt/static/zkrplatforma-60n.png"/>
+<meta property="og:title" content="Naujausi klausimai"/>
+{% endif %}
+<meta property="og:description" content="{{ description }}">
+{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+	var loadType = "{{ load_type }}";
+	var loadExtra = "{{ load_extra }}";
+	var polId = 0;
+  {% if pol_id %}
+	polId = {{ pol_id }};
+  {% endif %}
+</script>
+<script src="{% static "js/latest.js" %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static "css/latest.css" %}">
+{% if pol_id %}
+<div id="dialog" style="display:none;">
+  <form>
+    <fieldset>
+      <label for="email">Jūsų el. paštas</label><br>
+      <input type="text" name="email" id="email" class="text ui-widget-content ui-corner-all"><br>
+      <label for="question_text">Jūsų klausimas</label><br>
+      <p id="charcount-p">0/500 ženklų</p>
+      <textarea class="text ui-widget-content ui-corner-all textarea" id="question_text" name="question_text"    ></textarea>
+</div>
+{% endif %}
+<div class="row">
+	{% if pol_name %}
+		<h2>{{ pol_name }}</h2>
+		<p>Politikas gavo <b>{{ pol_total }}</b> klausimus, atsakė <b>{{ pol_answered }}</b>
+		<p><button id="popup" class="btn btn-default my-btn">Užduoti klausimą</button>
+		{% if promises %}
+			<h4>Politiko pažadai:</h4>
+			{% for prom in promises %}
+			<div class="klausimas">
+				<div class="klausimas-sub klausimas-sub-ch">
+					<p>„{{ prom.text }}“
+					<p><a class="btn btn-default my-btn" href="/promise/{{ prom.id }}/">Daugiau</a>
+				</div>
+			</div>
+			{% endfor %}
+		{% endif %}
+		{% if biography %}
+			<h4>Apie politiką:</h4>
+			<p id="biop">{{ biography|linebreaks|urlize	}}
+		{% endif %}
+	{% endif %}
+	{% if description %}
+		<h4>{{ description }}</h4>
+	{% endif %}
+	<a class="btn btn-default my-btn" href="{{ load_type }}">Visi klausimai</a>
+	<a class="btn btn-default my-btn" href="{{ load_type }}answered/">Atsakyti</a>
+	<a class="btn btn-default my-btn" href="{{ load_type }}unanswered/">Neatsakyti</a>
+</div>
+<div class="row">
+	<div class="col-md-12" id="klaus-div">
+		{% for quest in questions %}
+			<div class="klausimas">
+				<div class="klausimas-sub klausimas-sub-ch">
+					<h4>{{ quest.question_text }}</h4>
+					<p class="asked-pols">Klausimas skirtas: 
+					{% for pol in quest.politicians.all|slice:":10" %}{% if forloop.counter != 1 %}, {% endif %}{{ pol.full_name }}{% endfor %}{% if quest.politicians.all|length > 10 %}, ir kiti.{% endif %}
+					{% if not load_extra == "unanswered/" %}
+						{% if quest.answer_set.all.count %}
+						<p>Atsakymai: {{ quest.answer_set.all.count }}
+						{% else %}
+						<p>Atsakymų nėra
+						{% endif %}
+					{% endif %}
+					{% if quest.answer_set.all %}
+					<p><a class="btn btn-default my-btn" href="/question/{{ quest.id }}/{% if pol_id %}#{{ pol_id }}{% endif %}">Atsakymai</a>
+					{% endif %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+<div class="row" style="text-align: center;" id="daugiau-btn-div">
+	<a id="daugiau-btn" class="btn btn-default my-btn">Daugiau</a>
+</div>
+<script type="text/javascript">
+if (parseInt({{ questions.count }}) < 10) {
+	$("#daugiau-btn-div").empty();
+}
+</script>
+{% endblock %}

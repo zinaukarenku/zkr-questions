@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}">
+<div class="row" id="loginpanel">
+	<p>
+	<p>Prisijungimas politikams ir platformos moderatoriams
+	<p>Jei norite užduoti klausimą, prisijungti <b>nereikia</b>
+	<div class="panel panel-default">
+		<div class="panel-heading">Prisijungimas</div>
+		<div class="panel-body">
+			{% if error == "inactive" %}
+				<font color="red">Neaktyvus vartotojas</font>
+			{% elif error == "wrong-credentials" %}
+				<font color="red">Blogas vartotojo vardas arba slaptažodis</font>
+			{% endif %}
+			<form class="form-horizontal" name="LoginForm" action="/login/" method="post">
+				{% csrf_token %}
+				<input type="hidden" name="next" value="{{ next }}" />
+				<div class="control-group">
+					<label class="control-label" for="username">El. pašas</label>
+					<div class="controls">
+						<input type="text" id="username" name="username"  placeholder="Username" class="form-control">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label" for="password">Slaptažodis</label>
+					<div class="controls">
+						<input type="password" name="password" id="password" placeholder="Password" class="form-control">
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<button type="submit" class="btn">Prisijungti</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

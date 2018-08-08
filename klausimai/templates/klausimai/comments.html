@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static "css/comments.css" %}">
+<div class="row">
+	<div class="panel panel-default" id="panel">
+		<div class="panel-body">
+			<p>Dėkojame, kad prisijungėte prie „Žinau, ką renku“ platformos.
+			<p>Klausimus galite surasti viršuje, skiltyje „Užduoti klausimai“ arba svetainės tituliniame puslapyje suradę sau svarbius politikus ir paspaudę „Politiko klausimai“. Jei klausimas turi bent vieną atsakymą, prie jo bus nuoroda „daugiau“ - ten ir galėsite komentuoti politikų atsakymus.
+			<p>Jei suradote klaidą ar turite kokių pasiūlymų, juos galite siųsti stanislovas@zinaukarenku.lt
+		</div>
+	</div>
+</div>
+{% endblock %}
