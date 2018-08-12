@@ -11,3 +11,4 @@ ipdb==0.11
 djangorestframework==3.8.2
 lxml==4.2.4
 Markdown==2.6.11
+beautifulsoup4==4.6.1
