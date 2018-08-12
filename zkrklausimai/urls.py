@@ -29,5 +29,5 @@ urlpatterns = [
     url(r'^api/v1/', include('apiv1.urls')),
     url(r'^api/v2/', include('apiv2.urls')),
     url(r'^registration/', include('zkr_registration.urls')),
-    url(r'^', include('frontend.urls')),
+    url(r'^', include('frontend_react.urls')),
 ]
